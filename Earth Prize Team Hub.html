@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Earth Prize 2027 — Team Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="hub.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-in">
+    <a class="brand" href="#top"><span class="brand-mark"></span>Earth Prize Hub</a>
+    <div class="nav-links">
+      <a href="#links">Links</a>
+      <a href="#blueprint">Blueprint</a>
+      <a href="#timeline">Timeline</a>
+      <a href="#team">Team</a>
+      <a href="#workload">Workload & Zoom</a>
+      <a href="#todo">To-Do</a>
+      <a href="#partners">Partners</a>
+    </div>
+    <div class="nav-save" id="saveState"><i></i> Saved on this device</div>
+  </div>
+</nav>
+
+<header class="hero" id="top" data-screen-label="Overview">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <div class="eyebrow"><span class="pill">The Earth Prize 2027</span> Team workspace</div>
+        <h1>From problem<br>to <span>pitch</span><span class="dot"></span></h1>
+        <p class="lead">Everything our team needs in one place: links, the blueprint split into sections, a timeline that finishes before 30 January, who does what, and editable tables. Click any cell to edit it.</p>
+      </div>
+      <div class="count">
+        <div class="count-label">Countdown to submission</div>
+        <div class="count-days" id="cDays">—</div>
+        <div class="bar"><i id="cBar"></i></div>
+        <div class="count-dates"><span>12 Nov 2026</span><span>30 Jan 2027</span></div>
+        <div class="count-next" id="cNext"></div>
+      </div>
+    </div>
+    <div class="stats" id="stats"></div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="block" id="links" data-screen-label="01 Links">
+    <div class="sec-head">
+      <div class="sec-num">01 / LINKS</div>
+      <h2 class="sec-title">All our <em>links</em></h2>
+      <p class="sec-sub">Blueprint and registration are filled in. Website and social media are empty for now — paste them here when they’re ready.</p>
+    </div>
+    <div class="links-grid" id="linksGrid"></div>
+  </section>
+
+  <section class="block" id="blueprint" data-screen-label="02 Blueprint">
+    <div class="sec-head">
+      <div class="sec-num">02 / BLUEPRINT</div>
+      <h2 class="sec-title">The blueprint, <em>split up</em></h2>
+      <p class="sec-sub">Seven sections, each telling a different part of our story. Word limits, the core question, and who owns each part.</p>
+    </div>
+    <div class="bp-grid" id="bpGrid"></div>
+  </section>
+
+  <section class="block" id="timeline" data-screen-label="03 Timeline">
+    <div class="sec-head">
+      <div class="sec-num">03 / TIMELINE</div>
+      <h2 class="sec-title">12 Nov → <em>30 Jan</em></h2>
+      <p class="sec-sub">11 weeks, in blueprint order, with 2 buffer days at the end. Click a dot to mark a phase as done.</p>
+    </div>
+    <div class="gantt" id="gantt"></div>
+    <div class="tl" id="tl"></div>
+  </section>
+
+  <section class="block" id="team" data-screen-label="04 Team">
+    <div class="sec-head">
+      <div class="sec-num">04 / TEAM</div>
+      <h2 class="sec-title">Team <em>positions</em></h2>
+      <p class="sec-sub">One leader, one vice leader, three members. The letters show which blueprint sections each person owns.</p>
+    </div>
+    <div class="team-grid" id="teamGrid"></div>
+  </section>
+
+  <section class="block" id="workload" data-screen-label="05 Workload">
+    <div class="sec-head">
+      <div class="sec-num">05 / WORKLOAD</div>
+      <h2 class="sec-title">Workload & <em>Zoom</em> meetings</h2>
+      <p class="sec-sub">One Zoom meeting per blueprint part. Paste the Zoom link and the Google Doc where the draft lives.</p>
+      <div class="sec-actions"><button class="btn sm" onclick="hubCSV('workload')">Export CSV</button></div>
+    </div>
+    <div class="sheet" id="workSheet"></div>
+  </section>
+
+  <section class="block" id="todo" data-screen-label="06 To-Do">
+    <div class="sec-head">
+      <div class="sec-num">06 / THINGS WE NEED TO DO</div>
+      <h2 class="sec-title">Things we <em>need to do</em></h2>
+      <p class="sec-sub">Every task with an owner, a date and a link (Zoom, Docs, video file). Add rows anytime.</p>
+      <div class="sec-actions"><button class="btn sm" onclick="hubCSV('todos')">Export CSV</button></div>
+    </div>
+    <div class="sheet" id="todoSheet"></div>
+    <div class="todo-split" id="todoSplit"></div>
+  </section>
+
+  <section class="block" id="partners" data-screen-label="07 Partners">
+    <div class="sec-head">
+      <div class="sec-num">07 / PARTNERS</div>
+      <h2 class="sec-title">Who we <em>work with</em></h2>
+      <p class="sec-sub">People and organisations to invite as collaborators, interviewees, mentors or sponsors. The rows are suggestions — fill in the names.</p>
+      <div class="sec-actions"><button class="btn sm" onclick="hubCSV('partners')">Export CSV</button></div>
+    </div>
+    <div class="sheet" id="partnerSheet"></div>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-grid">
+    <div>
+      <h2>Submit by <span>28 Jan.</span><br>Deadline 30 Jan.</h2>
+      <p>Edits save in this browser automatically. To share updates with the team, download a backup and send it in the group chat. Teammates click “Load backup” to get the latest version. You can also export any table as CSV for Google Sheets.</p>
+    </div>
+    <div class="foot-actions">
+      <div class="row">
+        <button class="btn leaf" onclick="hubExport()">Download backup</button>
+        <button class="btn" onclick="hubImport()">Load backup</button>
+      </div>
+      <div class="row">
+        <button class="btn sm" onclick="window.print()">Print</button>
+        <button class="btn sm" onclick="hubReset()">Reset template</button>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+<script src="hub-data.js"></script>
+<script src="hub-app.js"></script>
+</body>
+</html>
